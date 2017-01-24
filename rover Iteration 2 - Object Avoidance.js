@@ -1,21 +1,14 @@
 var myRover = {
   position: [0,0],
-  direction: 'N',
-  collission: false
+  direction: 'N'
 };
-var myRock = [[1,1], [2,2], [3,3]];
-
-
-//test the myRock array
-  /*
-  console.log(myRock.position.length);
-  for (i = 0; i < myRock.position.length; i++) {
-    console.log(myRock.position[i]);
-  }
-  */
+var myRock = {
+  position: [1,1]
+}
 
 function hitRockForward(rover) {
   document.getElementById("loc").innerHTML = "You Hit the Rock!";
+  console.log("You Hit the Rock!");
   console.log("Rock " + rover.direction)
   switch(rover.direction) {
     case 'N':
@@ -35,6 +28,7 @@ function hitRockForward(rover) {
 
 function hitRockBack(rover) {
   document.getElementById("loc").innerHTML = "You Hit the Rock!";
+  console.log("You Hit the Rock!");
   console.log("Rock " + rover.direction)
   switch(rover.direction) {
     case 'N':
@@ -52,73 +46,60 @@ function hitRockBack(rover) {
   };
 }
 
-function testForRocksForward(rover) {
-  for (i = 0; i < myRock.length; i++) {
-    if ((myRock[i][0] === rover.position[0]) && (myRock[i][1] === rover.position[1])) {
-      document.getElementById("Direction").innerHTML = "There is a rock!!!!";
-      console.log("There is a Rock!!!");
-      windows.alert("You Hit a Rock!");
-      hitRockForward(rover);
-    }
-  }
-}
-
-function testForRocksBack(rover) {
-  for (i = 0; i < myRock.length; i++) {
-    if ((myRock[i][0] === rover.position[0]) && (myRock[i][1] === rover.position[1])) {
-      document.getElementById("Direction").innerHTML = "There is a rock!!!!";
-      console.log("There is a Rock!!!");
-      windows.alert("You Hit a Rock!");
-      hitRockBack(rover);
-    }
-  }
-}
-
 function goForward(rover) {
   switch(rover.direction) {
     case 'N':
       rover.position[0]++
-      testForRocksForward(rover);
       if (rover.position[0] > 10) {
         rover.position[0] = 0
       } else if (rover.position[0] < 0) {
         rover.position[0] = 10
+      } else if ((rover.position[0] === myRock.position[0]) && (rover.position[1] === myRock.position[1])) {
+        hitRockForward(rover);
+        break;
       } else {
         break;
       }
     case 'E':
       rover.position[1]++
-      testForRocksForward(rover);
       if (rover.position[1] > 10) {
         rover.position[1] = 0
       } else if (rover.position[1] < 0) {
         rover.position[1] = 10
+      } else if ((rover.position[0] === myRock.position[0]) && (rover.position[1] === myRock.position[1])) {
+        hitRockForward(rover);
+        break;
       } else {
         break;
       }
     case 'S':
       rover.position[0]--
-      testForRocksForward(rover);
         if (rover.position[0] > 10) {
           rover.position[0] = 0
         } else if (rover.position[0] < 0) {
           rover.position[0] = 10
+        } else if ((rover.position[0] === myRock.position[0]) && (rover.position[1] === myRock.position[1])) {
+          hitRockForward(rover);
+          break;
         } else {
           break;
         }
     case 'W':
       rover.position[1]--
-      testForRocksForward(rover);
       if (rover.position[1] > 10) {
         rover.position[1] = 0
       } else if (rover.position[1] < 0) {
         rover.position[1] = 10
+      } else if ((rover.position[0] === myRock.position[0]) && (rover.position[1] === myRock.position[1])) {
+        hitRockForward(rover);
+        break;
       } else {
         break;
       }
   };
   console.log("New Rover Position: [" + rover.position[0] + ", " + rover.position[1] + "]");
   console.log(rover.direction);
+  console.log(document);
   document.getElementById("loc").innerHTML = rover.position[0] + ", " + rover.position[1];
   document.getElementById("Direction").innerHTML = rover.direction
 //  document.getElementByClassName("loc").innerHTML = (rover.position[0] + ", " + rover.position[1]);
@@ -130,47 +111,53 @@ function goForward(rover) {
     switch(rover.direction) {
       case 'N':
         rover.position[0]--
-        testForRocksBack(rover);
         if (rover.position[0] > 10) {
           rover.position[0] = 0
         } else if (rover.position[0] < 0) {
           rover.position[0] = 10
+        } else if ((rover.position[0] === myRock.position[0]) && (rover.position[1] === myRock.position[1])) {
+          hitRockBack(rover);
+          break;
         } else {
           break;
         }
       case 'E':
         rover.position[1]--
-        testForRocksBack(rover);
         if (rover.position[1] > 10) {
           rover.position[1] = 0
         } else if (rover.position[1] < 0) {
           rover.position[1] = 10
+        } else if ((rover.position[0] === myRock.position[0]) && (rover.position[1] === myRock.position[1])) {
+          hitRockBack(rover);
+          break;
         } else {
           break;
         }
       case 'S':
         rover.position[0]++
-        testForRocksBack(rover);
         if (rover.position[0] > 10) {
           rover.position[0] = 0
         } else if (rover.position[0] < 0) {
           rover.position[0] = 10
+        } else if ((rover.position[0] === myRock.position[0]) && (rover.position[1] === myRock.position[1])) {
+          hitRockBack(rover);
+          break;
         } else {
           break;
         }
       case 'W':
         rover.position[1]++
-        testForRocksBack(rover);
         if (rover.position[1] > 10) {
           rover.position[1] = 0
         } else if (rover.position[1] < 0) {
           rover.position[1] = 10
+        } else if ((rover.position[0] === myRock.position[0]) && (rover.position[1] === myRock.position[1])) {
+          hitRockBack(rover);
+          break;
         } else {
           break;
         }
     };
-    document.getElementById("loc").innerHTML = rover.position[0] + ", " + rover.position[1];
-    document.getElementById("Direction").innerHTML = rover.direction
     console.log("New Rover Position: [" + rover.position[0] + ", " + rover.position[1] + "]");
     console.log(rover.direction);
 }
@@ -191,8 +178,6 @@ function goForward(rover) {
           break;
       };
       console.log(rover.direction);
-      document.getElementById("loc").innerHTML = rover.position[0] + ", " + rover.position[1];
-      document.getElementById("Direction").innerHTML = rover.direction
 }
 
       function goLeft(rover) {
@@ -211,8 +196,6 @@ function goForward(rover) {
             break;
         };
         console.log(rover.direction);
-        document.getElementById("loc").innerHTML = rover.position[0] + ", " + rover.position[1];
-        document.getElementById("Direction").innerHTML = rover.direction
       }
 
 
@@ -248,19 +231,6 @@ function instructions() {
   };
 }
 
-function clickButton(e) {
-  switch(e.keyCode) {
-    case 38:
-      goForward(myRover);
-      break;
-    case 39:
-      goRight(myRover);
-      break;
-    case 40:
-      goBack(myRover);
-      break;
-    case 37:
-      goLeft(myRover);
-      break;
-  };
-}
+
+
+instructions();
