@@ -51,7 +51,6 @@ function hitRockBack(rover) {
       break;
   };
 }
-<<<<<<< Updated upstream
 
 function testForRocksForward(rover) {
   for (i = 0; i < myRock.length; i++) {
@@ -249,14 +248,13 @@ function instructions() {
   };
 }
 
-=======
 
 function testForRocksForward(rover) {
   for (i = 0; i < myRock.length; i++) {
     if ((myRock[i][0] === rover.position[0]) && (myRock[i][1] === rover.position[1])) {
       document.getElementById("Direction").innerHTML = "There is a rock!!!!";
       console.log("There is a Rock!!!");
-      windows.alert("You Hit a Rock!");
+
       hitRockForward(rover);
     }
   }
@@ -265,9 +263,9 @@ function testForRocksForward(rover) {
 function testForRocksBack(rover) {
   for (i = 0; i < myRock.length; i++) {
     if ((myRock[i][0] === rover.position[0]) && (myRock[i][1] === rover.position[1])) {
-      document.getElementById("Direction").innerHTML = "There is a rock!!!!";
       console.log("There is a Rock!!!");
-      windows.alert("You Hit a Rock!");
+      document.getElementById("Direction").innerHTML = "There is a rock!!!!";
+
       hitRockBack(rover);
     }
   }
@@ -287,7 +285,7 @@ function goForward(rover) {
     case 'N':
       rover.position[0]++
       testForRocksForward(rover);
-      drawRover(rover);
+
       if (rover.position[0] > 10) {
         rover.position[0] = 0
       } else if (rover.position[0] < 0) {
@@ -457,7 +455,7 @@ function instructions() {
   };
 }
 
->>>>>>> Stashed changes
+
 function clickButton(e) {
   switch(e.keyCode) {
     case 38:
